@@ -1,0 +1,4 @@
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\bin\Debug\netcoreapp3.1\CDWRepository.deps.json
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\bin\Debug\netcoreapp3.1\CDWRepository.dll
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRepository.AssemblyInfoInputs.cache
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRepository.AssemblyInfo.cs
