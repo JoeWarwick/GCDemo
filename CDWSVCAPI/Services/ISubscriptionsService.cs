@@ -5,7 +5,7 @@ namespace CDWSVCAPI.Services
 {
     public interface ISubscriptionsService
     {
-        public Task<SubscriptionModel[]> GetSubscriptions(Guid usr, string hash);
-        public Task SubmitErrorLog(string message, string stacktrace, int severity);
+        public SubscriptionModel[] GetSubscriptions(Guid usr, string hash);
+        public Task<int> SubmitErrorLog(string userid, string message, string stacktrace, int severity);
     }
 }

@@ -7,9 +7,11 @@
     <PackageReference Include="AzureExtensions.Swashbuckle" Version="3.2.2" />
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.9" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.7" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.9" />
+    <PackageReference Include="TidyManaged" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\FeedParsing\FeedParsing.csproj" />
     <ProjectReference Include="..\CDWRepository\CDWRepository.csproj" />
   </ItemGroup>
   <ItemGroup>

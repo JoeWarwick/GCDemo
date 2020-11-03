@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CDWSVCAPI", "CDWSVCAPI\CDWSVCAPI.csproj", "{EDDBF79F-8C2D-46D1-ACDC-69663B831C2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CDWSVCAPI", "CDWSVCAPI\CDWSVCAPI.csproj", "{EDDBF79F-8C2D-46D1-ACDC-69663B831C2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CDWRepository", "CDWRepository\CDWRepository.csproj", "{F82B4CE0-5F05-4D0F-879E-22245DE5B033}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CDWRepository", "CDWRepository\CDWRepository.csproj", "{F82B4CE0-5F05-4D0F-879E-22245DE5B033}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeedParsing", "..\FeedParsing\FeedParsing.csproj", "{6793385E-341F-41AA-9094-BDB546BFC623}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F82B4CE0-5F05-4D0F-879E-22245DE5B033}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F82B4CE0-5F05-4D0F-879E-22245DE5B033}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F82B4CE0-5F05-4D0F-879E-22245DE5B033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6793385E-341F-41AA-9094-BDB546BFC623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6793385E-341F-41AA-9094-BDB546BFC623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6793385E-341F-41AA-9094-BDB546BFC623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6793385E-341F-41AA-9094-BDB546BFC623}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
