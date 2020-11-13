@@ -1,16 +1,18 @@
 ﻿using CDWSVCAPI.Models;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using static CDWRepository.CDWSVCModel;
+using CDWRepository;
 
 namespace CDWSVCAPI.Caching
 {
     public class AutoImageRefreshCache : AutoRefreshCache<Tuple<string, string>, List<FeedImage>>
     {
         private IContentCuration _curation;
-        public AutoImageRefreshCache(IContentCuration curation) : base(interval: TimeSpan.FromMinutes(120)) 
+        public AutoImageRefreshCache(IContentCuration curation, ILogger logger) 
+            : base(interval: TimeSpan.FromMinutes(120), logger) 
         {
             this._curation = curation;
         }
