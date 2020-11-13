@@ -2,6 +2,7 @@
 using CDWSVCAPI.Helpers;
 using CDWSVCAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,8 +21,8 @@ namespace CDWSVCAPI.Caching
         private CDWSVCModel _ctx;
         private IContentCuration _curation;
 
-        public AutoFeedRefreshCache(CDWSVCModel ctx, IContentCuration curation) 
-            : base(interval: TimeSpan.FromMinutes(120)) 
+        public AutoFeedRefreshCache(CDWSVCModel ctx, IContentCuration curation, ILogger logger) 
+            : base(interval: TimeSpan.FromMinutes(120), logger) 
         {
             this._ctx = ctx;
             this._curation = curation;
@@ -131,13 +132,13 @@ namespace CDWSVCAPI.Caching
         {
             string url;
             XmlDocument resp;
-            List<FeedTransform> transformQueue;
+            IEnumerable<FeedTransform> transformQueue;
             try
             {
                 var feed = _ctx.Subscribables.Include("FeedTransforms").FirstOrDefault(f => f.Id == key.Item2);
                 url = feed.Url;
                 resp = this.Get(Tuple.Create(url.ToString(), 0));
-                transformQueue = feed?.FeedTransforms == null ? feed.SourceGroup.FeedTransforms : feed.FeedTransforms;
+                transformQueue = feed?.FeedTransforms.FirstOrDefault() == null ? feed.SourceGroup.FeedTransforms : feed.FeedTransforms.Select(sft => sft.FeedTransform);
             }
             catch (Exception ex)
             {
@@ -158,13 +159,13 @@ namespace CDWSVCAPI.Caching
                         switch (tx.InputFeedType?.TypeName)
                         {
                             case "RSS":
-                                xslArgs.AddExtensionObject("ext:RSSProcessing", new RSSProcessing(new AutoImageRefreshCache(_curation), new AutoMetaRefreshCache()));
+                                xslArgs.AddExtensionObject("ext:RSSProcessing", new RSSProcessing(new AutoImageRefreshCache(_curation, _logger), new AutoMetaRefreshCache(_logger)));
                                 break;
                             case "ATOM":
-                                xslArgs.AddExtensionObject("ext:AtomProcessing", new AtomProcessing(new AutoImageRefreshCache(_curation), new AutoMetaRefreshCache()));
+                                xslArgs.AddExtensionObject("ext:AtomProcessing", new AtomProcessing(new AutoImageRefreshCache(_curation, _logger), new AutoMetaRefreshCache(_logger)));
                                 break;
                             default:
-                                xslArgs.AddExtensionObject("ext:AtomProcessing", new AtomProcessing(new AutoImageRefreshCache(_curation), new AutoMetaRefreshCache()));
+                                xslArgs.AddExtensionObject("ext:AtomProcessing", new AtomProcessing(new AutoImageRefreshCache(_curation, _logger), new AutoMetaRefreshCache(_logger)));
                                 break;
                         }
                         foreach (var p in tx.Params)
