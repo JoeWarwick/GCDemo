@@ -1,41 +1,32 @@
-﻿using CDWRepository;
-using CDWSVCAPI.Caching;
-using CDWSVCAPI.Helpers;
+﻿using CDWSVCAPI.Caching;
 using FeedParsing;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
+using static CDWRepository.CDWSVCModel;
 
 namespace CDWSVCAPI.Services
 {
     public class FeedService : IFeedService
     {
-        public CDWSVCModel Model { get; }
-
+        public CDWRepository.CDWSVCModel Model { get; }
         public ILogger Logger { get; }
-
         public AutoFeedRefreshCache Cache { get; }
-
-        public UserManager<CDWSVCUser> UserManager { get; }
-
-        public FeedService(CDWSVCModel model, AutoFeedRefreshCache cache, UserManager<CDWSVCUser> userManager, ILogger logger)
+        
+        public FeedService(CDWRepository.CDWSVCModel model, AutoFeedRefreshCache cache, ILogger logger)
         {
             this.Model = model;
             this.Cache = cache;
             this.Logger = logger;
-            this.UserManager = userManager;
+
         }
 
 
-        public async Task<IList<Item>> GetEntries(Guid usr, string hash, int id)
+        public IList<Item> GetEntries(Guid usr, string hash, int id)
         {
             var user = Model.CDWSVCUsers.FirstOrDefault(u => u.Id == usr.ToString()) as CDWSVCUser;
             var fp = new FeedParser();
@@ -47,9 +38,9 @@ namespace CDWSVCAPI.Services
             {
                 switch (feed.FeedType.TypeName)
                 {
-                    case "ATOM": return await fp.Parse(new Uri(url), FeedType.Atom);
-                    case "RSS": return await fp.Parse(new Uri(url), FeedType.RSS);
-                    case "RDF": return await fp.Parse(new Uri(url), FeedType.RDF);
+                    case "ATOM": return fp.Parse(new Uri(url), FeedType.Atom);
+                    case "RSS": return fp.Parse(new Uri(url), FeedType.RSS);
+                    case "RDF": return fp.Parse(new Uri(url), FeedType.RDF);
                 }
             }
             catch (Exception ex)
@@ -63,7 +54,7 @@ namespace CDWSVCAPI.Services
             return res;
         }
 
-        public async Task<string> GetFeed(Guid usr, string hash, int id, string accept, string fmt = "")
+        public async Task<string> GetFeed(Guid usr, string hash, int id, string fmt = "")
         {
             await Model.Subscribables.OfType<FeedSet>().Include("Feeds").LoadAsync();
 
@@ -74,23 +65,23 @@ namespace CDWSVCAPI.Services
             {
                 return "No such user found!";
             }
-            
-            
+            var isPremium = await Model.Roles.AnyAsync(r => r.Name == "PremiumUser" && r.Users.Any(u => u.UserId == user.Id));
+            if (!BLL.isValidUser(user)) return new HttpResponseMessage(HttpStatusCode.Unauthorized);
             Subscribable feed = await Model.Subscribables
                 .Include("FeedSource.Group.Params")
                 .Include("FeedSource.Group.FeedTransforms.InputFeedType")
                 .FirstOrDefaultAsync(f => f.Id == id && f.Owner.Id == usr.ToString());
-            if (feed == null) return null;
+            if (feed == null) return new HttpResponseMessage(HttpStatusCode.NotFound);
             if (feed.FeedSource.LastChange > feed.Added)
             {
                 var newfeed = DBInitialiser.CreateFromSource(feed.FeedSource, user);
                 feed.Url = newfeed.Url;
                 feed.Added = DateTime.Now;
                 await Model.SaveChangesAsync();
-                Cache.Remove(Tuple.Create("Raw", feed.Id));
+                _cache.Remove(Tuple.Create("Raw", feed.Id));
             }
 
-            var resp = Cache.Get(Tuple.Create("Raw", feed.Id)).OuterXml;
+            var resp = _cache.Get(Tuple.Create("Raw", feed.Id)).OuterXml;
 
             if (!string.IsNullOrEmpty(fmt))
             {
@@ -103,30 +94,21 @@ namespace CDWSVCAPI.Services
                     resp = Encoding.UTF8.GetString((mem as MemoryStream).ToArray());
                 }
             }
+            IEnumerable<string> headerValues;
             //detect json or xml requested
-            
+            var accept = string.Empty;
+            var keyFound = Request.Headers.TryGetValues("accept", out headerValues);
+            if (keyFound)
+            {
+                accept = headerValues.FirstOrDefault();
+            }
             if (accept == "application/json")
             {
                 var xdoc = new XmlDocument();
                 xdoc.LoadXml(resp);
-                return JsonConvert.SerializeXmlNode(xdoc);
+                return new HttpResponseMessage() { Content = new StringContent(JsonConvert.SerializeXmlNode(xdoc), Encoding.UTF8, "application/json") };
             }
-            return resp;
-        }
-
-        public async Task<bool> IsPremium(Guid usr, string hash)
-        {
-            var user = await Model.CDWSVCUsers.FirstOrDefaultAsync(u =>
-               u.Id == usr.ToString() && u.HashStr == hash);
-
-           return await UserManager.IsInRoleAsync(user, "PremiumUser");
-        }
-
-        public async Task<bool> IsValidUser(Guid usr, string hash)
-        {
-            var user = await Model.CDWSVCUsers.FirstOrDefaultAsync(u =>
-               u.Id == usr.ToString() && u.HashStr == hash);
-            return BLHelper.isValidUser(user, hash);
+            return new HttpResponseMessage() { Content = new StringContent(resp, Encoding.UTF8, "application/xml") };
         }
     }
 }

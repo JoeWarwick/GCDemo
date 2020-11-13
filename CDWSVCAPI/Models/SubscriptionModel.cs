@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CDWRepository;
+using static CDWRepository.CDWSVCModel;
 
 namespace CDWSVCAPI.Services
 {

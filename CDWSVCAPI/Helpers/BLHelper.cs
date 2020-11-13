@@ -1,4 +1,4 @@
-﻿using CDWRepository;
+﻿using static CDWRepository.CDWSVCModel;
 
 namespace CDWSVCAPI.Helpers
 {

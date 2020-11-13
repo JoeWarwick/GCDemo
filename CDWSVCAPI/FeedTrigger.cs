@@ -8,10 +8,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using CDWSVCAPI.Services;
-using Microsoft.AspNetCore.Identity;
-using CDWRepository;
-using Microsoft.Extensions.Primitives;
-using System.Linq;
 
 namespace CDWSVCAPI
 {
@@ -21,8 +17,7 @@ namespace CDWSVCAPI
 
         [FunctionName("FeedTrigger")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "feed/{usr}/{hash}/{id}")] HttpRequest req, 
-            IFeedService service,
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "feed/{usr}/{hash}/{id}")] HttpRequest req, IFeedService service,
             ILogger log)
         {
             this._feedService = service;
@@ -31,14 +26,7 @@ namespace CDWSVCAPI
             string hash = req.Query["hash"];
             string id = req.Query["id"];
 
-            var accept = string.Empty;
-            var keyFound = req.Headers.TryGetValue("accept", out StringValues headerValues);
-            if (keyFound)
-            {
-                accept = headerValues.FirstOrDefault();
-            }
-
-            var resp = await _feedService.GetFeed(Guid.Parse(usr), hash, int.Parse(id), accept);
+            var resp = await _feedService.GetFeed(Guid.Parse(usr), hash, int.Parse(id));
             var json = JsonConvert.SerializeObject(resp);
             return new OkObjectResult(json);
         }

@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml;
 using System.Xml.XPath;
+using System.IO;
 using TidyManaged;
 using CDWSVCAPI.Caching;
+using static CDWRepository.CDWSVCModel;
 using CDWSVCAPI.Models;
-using CDWRepository;
 
 namespace CDWSVCAPI.Helpers
 {
@@ -262,6 +264,23 @@ namespace CDWSVCAPI.Helpers
         }
     }
 
+    public class ParamComparer : IEqualityComparer<Param>
+    {
+        public bool Equals(Param x, Param y)
+        {
+            if (ReferenceEquals(x, y))
+                return true;
+            if (x == null || y == null)
+                return false;
+            if (y.Value == null) return false;
+            return x.Key.Equals(y.Key);
+        }
+
+        public int GetHashCode(Param obj)
+        {
+            return obj.Key.GetHashCode();
+        }
+    }
     public class StatusClient : WebClient
     {
         private HttpWebResponse _resp = null;

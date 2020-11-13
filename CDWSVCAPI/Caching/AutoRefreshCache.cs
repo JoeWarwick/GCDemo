@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +10,11 @@ namespace CDWSVCAPI.Caching
     {
         private readonly ConcurrentDictionary<TKey, TValue> _entries = new ConcurrentDictionary<TKey, TValue>();
 
-        protected TimeSpan _interval { get; set; }
+        public TimeSpan _interval { get; set; }
 
-        protected ILogger _logger { get; set; }
-
-        protected AutoRefreshCache(TimeSpan interval, ILogger logger)
+        protected AutoRefreshCache(TimeSpan interval)
         {
             _interval = interval;
-            _logger = logger;
             var timer = new System.Timers.Timer();
             timer.Interval = _interval.TotalMilliseconds;
             timer.AutoReset = true;

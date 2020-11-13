@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace CDWSVCAPI.Caching
 {
@@ -12,7 +14,7 @@ namespace CDWSVCAPI.Caching
         private static Regex ogImageCheck = new Regex(@"property=""og:image""\s*content=""([^""]*)""", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         private static Regex ogVideoCheck = new Regex(@"property=""og:video""\s*content=""([^""]*)""", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-        public AutoMetaRefreshCache(ILogger logger) : base(interval: TimeSpan.FromMinutes(120), logger) {}
+        public AutoMetaRefreshCache() : base(interval: TimeSpan.FromMinutes(120)) {}
 
         protected override string Load(string key)
         {
@@ -49,7 +51,7 @@ namespace CDWSVCAPI.Caching
                 }
                 catch (Exception Ex)
                 {
-                    _logger.LogWarning(Ex, "Failure reading link header; " + "ERROR!:" + Ex.Message);
+                    logger.Warn(Ex, "Failure reading link header; " + "ERROR!:" + Ex.Message);
                     return "ERROR!:" + Ex.Message;
                 }
             }

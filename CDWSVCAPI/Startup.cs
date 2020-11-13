@@ -20,6 +20,8 @@ namespace CDWSVCAPI
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "CDWSVCAPI", Version = "v1" });
             });
 
+            builder.Services.AddDbContext<CDWSVCModel>(options => options.UseSqlite("Data Source=cdw.db"));
+        
             builder.Services.AddOptions<ConfigModel>()
                 .Configure<IConfiguration>((settings, configuration) =>
                 {
