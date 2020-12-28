@@ -12,16 +12,16 @@ using System.Text;
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
-using static CDWRepository.CDWSVCModel;
+using static CDWRepository.CDWSVCModel<CDWRepository.CDWSVCUser>;
 
 namespace CDWSVCAPI.Caching
 {
     public class AutoFeedRefreshCache: AutoRefreshCache<Tuple<string, int>, XmlDocument>
     {
-        private CDWSVCModel _ctx;
+        private CDWSVCModel<CDWSVCUser> _ctx;
         private IContentCuration _curation;
 
-        public AutoFeedRefreshCache(CDWSVCModel ctx, IContentCuration curation, ILogger logger) 
+        public AutoFeedRefreshCache(CDWSVCModel<CDWSVCUser> ctx, IContentCuration curation, ILogger logger) 
             : base(interval: TimeSpan.FromMinutes(120), logger) 
         {
             this._ctx = ctx;
@@ -138,7 +138,7 @@ namespace CDWSVCAPI.Caching
                 var feed = _ctx.Subscribables.Include("FeedTransforms").FirstOrDefault(f => f.Id == key.Item2);
                 url = feed.Url;
                 resp = this.Get(Tuple.Create(url.ToString(), 0));
-                transformQueue = feed?.FeedTransforms.FirstOrDefault() == null ? feed.SourceGroup.FeedTransforms : feed.FeedTransforms.Select(sft => sft.FeedTransform);
+                transformQueue = feed?.FeedTransforms.FirstOrDefault() == null ? feed.SourceGroup.FeedTransforms.Select(sgf => sgf.FeedTransform) : feed.FeedTransforms.Select(sft => sft.FeedTransform);
             }
             catch (Exception ex)
             {
@@ -170,7 +170,7 @@ namespace CDWSVCAPI.Caching
                         }
                         foreach (var p in tx.Params)
                         {
-                            xslArgs.AddParam(p.Key, "", p.Value);
+                            xslArgs.AddParam(p.Param.Key, "", p.Param.Value);
                         }
                         xsl.Load($"~{tx.Url}");
                         using (StringReader sr = new StringReader(resp.OuterXml))

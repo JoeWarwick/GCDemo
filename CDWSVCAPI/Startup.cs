@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using CDWRepository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using CDWSVCAPI.Caching;
 using CDWSVCAPI.Services;
+using Microsoft.AspNetCore.Identity;
 
 [assembly: FunctionsStartup(typeof(CDWSVCAPI.Startup))]
 namespace CDWSVCAPI
@@ -20,11 +20,19 @@ namespace CDWSVCAPI
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "CDWSVCAPI", Version = "v1" });
             });
 
+            builder.Services.AddDbContext<CDWSVCModel>(opt => {
+                opt.UseSqlite("Data source=cdwapi.db");
+            });
+
             builder.Services.AddOptions<ConfigModel>()
                 .Configure<IConfiguration>((settings, configuration) =>
                 {
                     configuration.GetSection("Config").Bind(settings);
                 });
+
+            builder.Services.AddIdentity<CDWSVCUser, IdentityRole>()
+                .AddEntityFrameworkStores<CDWSVCModel>()
+                .AddDefaultTokenProviders();
 
             builder.Services.AddScoped<ISubscriptionsService>();
 
@@ -32,7 +40,7 @@ namespace CDWSVCAPI
                 .AddSingleton<AutoImageRefreshCache>()
                 .AddSingleton<AutoMetaRefreshCache>();
 
-            builder.Services.BuildServiceProvider();
+            var sp = builder.Services.BuildServiceProvider();
         }
 
     }

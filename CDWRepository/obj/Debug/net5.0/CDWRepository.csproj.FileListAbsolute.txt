@@ -1,0 +1,15 @@
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\CDWRepository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\CDWRepository.AssemblyInfoInputs.cache
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\CDWRepository.AssemblyInfo.cs
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\CDWRepository.csproj.CoreCompileInputs.cache
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\bin\Debug\net5.0\CDWRepository.deps.json
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\bin\Debug\net5.0\CDWRepository.runtimeconfig.json
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\bin\Debug\net5.0\CDWRepository.runtimeconfig.dev.json
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\bin\Debug\net5.0\CDWRepository.dll
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\bin\Debug\net5.0\ref\CDWRepository.dll
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\bin\Debug\net5.0\CDWRepository.pdb
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\CDWRepository.dll
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\ref\CDWRepository.dll
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\CDWRepository.pdb
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\CDWRepository.genruntimeconfig.cache
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\CDWRepository.csprojAssemblyReference.cache
