@@ -39,128 +39,22 @@ namespace CDWRepository
             // Define all many to many relationships as per EF Core
             modelBuilder.Entity<SubscribableExampleImages>()
                 .HasKey(se => new { se.SubscribableId, se.ExampleImageId });
-            //modelBuilder.Entity<SubscribableExampleImages>()
-            //    .HasOne(se => se.Subscribable)
-            //    .WithMany(s => s.ExampleImages)
-            //    .HasForeignKey(se => se.SubscribableId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
-            //modelBuilder.Entity<SubscribableExampleImages>()
-            //    .HasOne(se => se.ExampleImage)
-            //    .WithMany(s => s.Subscribables)
-            //    .HasForeignKey(se => se.SubscribableId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
             modelBuilder.Entity<SubscribableFeedTransforms>()
                 .HasKey(se => new { se.SubscribableId, se.FeedTransformId });
-            //modelBuilder.Entity<SubscribableFeedTransforms>()
-            //    .HasOne(se => se.Subscribable)
-            //    .WithMany(s => s.FeedTransforms)
-            //    .HasForeignKey(se => se.SubscribableId);
-            //modelBuilder.Entity<SubscribableFeedTransforms>()
-            //    .HasOne(se => se.FeedTransform)
-            //    .WithMany(s => s.Subscribables)
-            //    .HasForeignKey(se => se.SubscribableId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
             modelBuilder.Entity<FeedSourceExampleImages>()
                 .HasKey(se => new { se.FeedSourceId, se.ExampleImageId });
-            //modelBuilder.Entity<FeedSourceExampleImages>()
-            //    .HasOne(se => se.FeedSource)
-            //    .WithMany(s => s.ExampleImages)
-            //    .HasForeignKey(se => se.FeedSourceId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
-            //modelBuilder.Entity<FeedSourceExampleImages>()
-            //    .HasOne(se => se.ExampleImage)
-            //    .WithMany(s => s.FeedSources)
-            //    .HasForeignKey(se => se.FeedSourceId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
             modelBuilder.Entity<FeedSourceFeedTransforms>()
                 .HasKey(se => new { se.FeedSourceId, se.FeedTransformId });
-            //modelBuilder.Entity<FeedSourceFeedTransforms>()
-            //    .HasOne(se => se.FeedSource)
-            //    .WithMany(s => s.FeedTransforms)
-            //    .HasForeignKey(se => se.FeedSourceId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
-            //modelBuilder.Entity<FeedSourceFeedTransforms>()
-            //    .HasOne(se => se.FeedTransform)
-            //    .WithMany(s => s.FeedSources)
-            //    .HasForeignKey(se => se.FeedSourceId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
             modelBuilder.Entity<FeedSourceGroupFeedTransforms>()
                 .HasKey(se => new { se.FeedSourceGroupId, se.FeedTransformId });
-            //modelBuilder.Entity<FeedSourceGroupFeedTransforms>()
-            //    .HasOne(se => se.FeedSourceGroup)
-            //    .WithMany(s => s.FeedTransforms)
-            //    .HasForeignKey(se => se.FeedSourceGroupId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
-            //modelBuilder.Entity<FeedSourceGroupFeedTransforms>()
-            //    .HasOne(se => se.FeedTransform)
-            //    .WithMany(s => s.FeedSourceGroups)
-            //    .HasForeignKey(se => se.FeedSourceGroupId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
             modelBuilder.Entity<FeedSourceFeedTags>()
                 .HasKey(se => new { se.FeedSourceId, se.Tag });
-            //modelBuilder.Entity<FeedSourceFeedTags>()
-            //    .HasOne(se => se.FeedSource)
-            //    .WithMany(s => s.Tags)
-            //    .HasForeignKey(se => se.FeedSourceId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
-            //modelBuilder.Entity<FeedSourceFeedTags>()
-            //    .HasOne(se => se.FeedTag)
-            //    .WithMany(s => s.FeedSources)
-            //    .HasForeignKey(se => se.FeedSourceId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
             modelBuilder.Entity<FeedSourceParams>()
                 .HasKey(se => new { se.FeedSourceId, se.ParamId });
-            //modelBuilder.Entity<FeedSourceParams>()
-            //    .HasOne(se => se.FeedSource)
-            //    .WithMany(s => s.Params)
-            //    .HasForeignKey(se => se.FeedSourceId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
-            //modelBuilder.Entity<FeedSourceParams>()
-            //    .HasOne(se => se.Param)
-            //    .WithMany(s => s.FeedSources)
-            //    .HasForeignKey(se => se.FeedSourceId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
             modelBuilder.Entity<FeedSourceGroupParams>()
                 .HasKey(se => new { se.FeedSourceGroupId, se.ParamId });
-            //modelBuilder.Entity<FeedSourceGroupParams>()
-            //    .HasOne(se => se.FeedSourceGroup)
-            //    .WithMany(s => s.Params)
-            //    .HasForeignKey(se => se.FeedSourceGroupId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
-            //modelBuilder.Entity<FeedSourceGroupParams>()
-            //    .HasOne(se => se.Param)
-            //    .WithMany(s => s.FeedSourceGroups)
-            //    .HasForeignKey(se => se.FeedSourceGroupId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
             modelBuilder.Entity<FeedTransformParams>()
                 .HasKey(se => new { se.FeedTransformId, se.ParamId });
-            //modelBuilder.Entity<FeedTransformParams>()
-            //    .HasOne(se => se.FeedTransform)
-            //    .WithMany(s => s.Params)
-            //    .HasForeignKey(se => se.FeedTransformId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
-            //modelBuilder.Entity<FeedTransformParams>()
-            //    .HasOne(se => se.Param)
-            //    .WithMany(s => s.FeedTransforms)
-            //    .HasForeignKey(se => se.FeedTransformId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
             modelBuilder.Entity<FeedSourceChildren>()
                 .HasKey(se => new { se.FeedSourceParentId, se.FeedSourceChildId });
             modelBuilder.Entity<FeedSourceChildren>()
@@ -169,7 +63,6 @@ namespace CDWRepository
                 .HasForeignKey(se => se.FeedSourceParentId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
-
         }
     }
 
