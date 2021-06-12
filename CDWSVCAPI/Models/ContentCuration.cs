@@ -2,16 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using static CDWRepository.CDWSVCModel;
 
 namespace CDWSVCAPI.Models
 {
     public class ContentCuration : IContentCuration
     {
-        private CDWSVCModel _ctx;
+        private CDWSVCModel<CDWSVCUser> _ctx;
 
-        public ContentCuration(CDWSVCModel ctx)
+        public ContentCuration(CDWSVCModel<CDWSVCUser> ctx)
         {
             _ctx = ctx;
         }
@@ -23,7 +21,7 @@ namespace CDWSVCAPI.Models
                 var images = _ctx.FeedImages.ToList();
                 return images;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //logger.Warn(ex, "CurationImages: Old imageset used as backup");
                 return backup as List<FeedImage>;

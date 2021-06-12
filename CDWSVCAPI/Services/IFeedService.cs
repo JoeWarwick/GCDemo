@@ -11,7 +11,7 @@ namespace CDWSVCAPI.Services
 {
     public interface IFeedService
     {
-        CDWSVCModel Model { get; }
+        CDWSVCModel<CDWSVCUser> Model { get; }
         ILogger Logger { get; }
         AutoFeedRefreshCache Cache { get; }
         UserManager<CDWSVCUser> UserManager { get; }

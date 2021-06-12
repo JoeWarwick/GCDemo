@@ -12,4 +12,4 @@ C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\CDWRepository
 C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\ref\CDWRepository.dll
 C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\CDWRepository.pdb
 C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\CDWRepository.genruntimeconfig.cache
-C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\CDWRepository.csprojAssemblyReference.cache
+C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\net5.0\CDWRepository.csproj.AssemblyReference.cache

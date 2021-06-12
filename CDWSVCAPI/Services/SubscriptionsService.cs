@@ -6,16 +6,15 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using static CDWRepository.CDWSVCModel;
 
 namespace CDWSVCAPI.Services
 {
     public class SubscriptionsService : ISubscriptionsService
     {
-        private CDWSVCModel _model;
+        private CDWSVCModel<CDWSVCUser> _model;
         private ILogger _logger;
 
-        public SubscriptionsService(CDWSVCModel model, ILogger logger) 
+        public SubscriptionsService(CDWSVCModel<CDWSVCUser> model, ILogger logger) 
         {
             this._model = model;
             this._logger = logger;

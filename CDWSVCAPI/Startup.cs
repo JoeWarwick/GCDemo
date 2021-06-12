@@ -20,7 +20,7 @@ namespace CDWSVCAPI
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "CDWSVCAPI", Version = "v1" });
             });
 
-            builder.Services.AddDbContext<CDWSVCModel>(opt => {
+            builder.Services.AddDbContext<CDWSVCModel<CDWSVCUser>>(opt => {
                 opt.UseSqlite("Data source=cdwapi.db");
             });
 
@@ -31,7 +31,7 @@ namespace CDWSVCAPI
                 });
 
             builder.Services.AddIdentity<CDWSVCUser, IdentityRole>()
-                .AddEntityFrameworkStores<CDWSVCModel>()
+                .AddEntityFrameworkStores<CDWSVCModel<CDWSVCUser>>()
                 .AddDefaultTokenProviders();
 
             builder.Services.AddScoped<ISubscriptionsService>();

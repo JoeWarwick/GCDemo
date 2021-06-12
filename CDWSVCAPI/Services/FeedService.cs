@@ -18,7 +18,7 @@ namespace CDWSVCAPI.Services
 {
     public class FeedService : IFeedService
     {
-        public CDWSVCModel Model { get; }
+        public CDWSVCModel<CDWSVCUser> Model { get; }
 
         public ILogger Logger { get; }
 
@@ -26,7 +26,7 @@ namespace CDWSVCAPI.Services
 
         public UserManager<CDWSVCUser> UserManager { get; }
 
-        public FeedService(CDWSVCModel model, AutoFeedRefreshCache cache, UserManager<CDWSVCUser> userManager, ILogger logger)
+        public FeedService(CDWSVCModel<CDWSVCUser> model, AutoFeedRefreshCache cache, UserManager<CDWSVCUser> userManager, ILogger logger)
         {
             this.Model = model;
             this.Cache = cache;
