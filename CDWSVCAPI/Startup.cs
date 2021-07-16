@@ -34,7 +34,7 @@ namespace CDWSVCAPI
                 .AddEntityFrameworkStores<CDWSVCModel<CDWSVCUser>>()
                 .AddDefaultTokenProviders();
 
-            builder.Services.AddScoped<ISubscriptionsService>();
+            builder.Services.AddScoped<ISubscriptionsService, SubscriptionsService>();
 
             builder.Services.AddSingleton<AutoFeedRefreshCache>()
                 .AddSingleton<AutoImageRefreshCache>()
