@@ -13,14 +13,19 @@ namespace CDWSVCAPI
 {
     public class SubscriptionsTrigger
     {
-        private ISubscriptionsService _subService;
+        private readonly ISubscriptionsService _subService;
+        private readonly ILogger<SubscriptionsTrigger> _log;
+
+        public SubscriptionsTrigger(ISubscriptionsService subservice, ILogger<SubscriptionsTrigger> log)
+        {
+            _subService = subservice;
+            _log = log;
+        }
 
         [FunctionName("Subscribables")]
         public IActionResult Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, ISubscriptionsService subService, ILogger log)
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req)
         {
-            this._subService = subService;
-
             string usr = req.Query["usr"];
             string hash = req.Query["id"];
 

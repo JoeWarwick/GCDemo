@@ -10,3 +10,16 @@ C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRep
 C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRepository.dll
 C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRepository.pdb
 C:\Users\joe\Source\Repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRepository.genruntimeconfig.cache
+C:\Users\jrwar\source\repos\CDWSVCAPI\CDWRepository\bin\Debug\netcoreapp3.1\CDWRepository.deps.json
+C:\Users\jrwar\source\repos\CDWSVCAPI\CDWRepository\bin\Debug\netcoreapp3.1\CDWRepository.runtimeconfig.json
+C:\Users\jrwar\source\repos\CDWSVCAPI\CDWRepository\bin\Debug\netcoreapp3.1\CDWRepository.runtimeconfig.dev.json
+C:\Users\jrwar\source\repos\CDWSVCAPI\CDWRepository\bin\Debug\netcoreapp3.1\CDWRepository.dll
+C:\Users\jrwar\source\repos\CDWSVCAPI\CDWRepository\bin\Debug\netcoreapp3.1\CDWRepository.pdb
+C:\Users\jrwar\source\repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRepository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jrwar\source\repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRepository.AssemblyInfoInputs.cache
+C:\Users\jrwar\source\repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRepository.AssemblyInfo.cs
+C:\Users\jrwar\source\repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRepository.csproj.CoreCompileInputs.cache
+C:\Users\jrwar\source\repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRepository.dll
+C:\Users\jrwar\source\repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRepository.pdb
+C:\Users\jrwar\source\repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRepository.genruntimeconfig.cache
+C:\Users\jrwar\source\repos\CDWSVCAPI\CDWRepository\obj\Debug\netcoreapp3.1\CDWRepository.csproj.AssemblyReference.cache

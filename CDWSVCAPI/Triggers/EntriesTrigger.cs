@@ -15,16 +15,19 @@ namespace CDWSVCAPI
 {
     public class EntriesTrigger
     {
-        private IFeedService _feedService;
+        private readonly IFeedService _feedService;
+        private readonly ILogger<EntriesTrigger> _log;
+
+        public EntriesTrigger(IFeedService feedService, ILogger<EntriesTrigger> log)
+        {
+            _feedService = feedService;
+            _log = log;
+        }
 
         [FunctionName("EntriesTrigger")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "entries/{usr}/{hash}/{id}")] HttpRequest req,
-            IFeedService service,
-            ILogger log)
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "entries/{usr}/{hash}/{id}")] HttpRequest req)
         {
-            this._feedService = service;
-
             string usr = req.Query["usr"];
             string hash = req.Query["hash"];
             string id = req.Query["id"];
