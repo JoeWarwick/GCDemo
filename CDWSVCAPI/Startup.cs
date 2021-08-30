@@ -35,6 +35,7 @@ namespace CDWSVCAPI
                 .AddDefaultTokenProviders();
 
             builder.Services.AddScoped<ISubscriptionsService, SubscriptionsService>();
+            builder.Services.AddScoped<IFeedService, FeedService>();
 
             builder.Services.AddSingleton<AutoFeedRefreshCache>()
                 .AddSingleton<AutoImageRefreshCache>()
