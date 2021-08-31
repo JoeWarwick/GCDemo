@@ -6,10 +6,12 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Primitives;
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Enums;
+using Microsoft.OpenApi.Models;
 using System.Linq;
-using Newtonsoft.Json;
 using CDWSVCAPI.Services;
+using System.Net;
 
 namespace CDWSVCAPI
 {
@@ -25,6 +27,12 @@ namespace CDWSVCAPI
         }
 
         [FunctionName("EntriesTrigger")]
+        [OpenApiOperation(operationId: "Entries", tags: new[] { "name" })]
+        [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "code", In = OpenApiSecurityLocationType.Query)]
+        [OpenApiParameter(name: "usr", In = ParameterLocation.Path, Required = true, Type = typeof(string), Description = "The User Id parameter")]
+        [OpenApiParameter(name: "hash", In = ParameterLocation.Path, Required = true, Type = typeof(string), Description = "The User Client Hash parameter")]
+        [OpenApiParameter(name: "id", In = ParameterLocation.Path, Required = true, Type = typeof(string), Description = "The Entries Id parameter")]
+        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/xml", bodyType: typeof(string), Description = "The OK response")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "entries/{usr}/{hash}/{id}")] HttpRequest req)
         {

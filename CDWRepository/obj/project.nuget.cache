@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XoWxpFFFaXA3djpajx6FovvVimld/wIkChjCsfbEKvS3jQLZtouyb84hri24PZ1o3BeHNVMNlcAcxQ7ra2dscA==",
+  "dgSpecHash": "PtDaV65xhzrDysIlDaLLTQUH+d5Jvz3gpdSc80e7w3hazLLhUfDIpPD1zzXrSPThIo7DjGXLz19bh/4DVnhApw==",
   "success": true,
   "projectFilePath": "C:\\Users\\jrwar\\source\\repos\\CDWSVCAPI\\CDWRepository\\CDWRepository.csproj",
   "expectedPackageFiles": [
@@ -41,10 +41,7 @@
     "C:\\Users\\jrwar\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\jrwar\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
     "C:\\Users\\jrwar\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
-    "C:\\Users\\jrwar\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
-    "C:\\Users\\jrwar\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
-    "C:\\Users\\jrwar\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
-    "C:\\Users\\jrwar\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512"
+    "C:\\Users\\jrwar\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
   ],
   "logs": []
 }

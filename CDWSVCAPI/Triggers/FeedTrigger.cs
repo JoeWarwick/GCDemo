@@ -6,12 +6,14 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Enums;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using CDWSVCAPI.Services;
-using Microsoft.AspNetCore.Identity;
-using CDWRepository;
 using Microsoft.Extensions.Primitives;
 using System.Linq;
+using System.Net;
 
 namespace CDWSVCAPI
 {
@@ -27,6 +29,12 @@ namespace CDWSVCAPI
         }
 
         [FunctionName("FeedTrigger")]
+        [OpenApiOperation(operationId: "Feed", tags: new[] { "name" })]
+        [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "code", In = OpenApiSecurityLocationType.Query)]
+        [OpenApiParameter(name: "usr", In = ParameterLocation.Path, Required = true, Type = typeof(string), Description = "The User Id parameter")]
+        [OpenApiParameter(name: "hash", In = ParameterLocation.Path, Required = true, Type = typeof(string), Description = "The User Client Hash parameter")]
+        [OpenApiParameter(name: "id", In = ParameterLocation.Path, Required = true, Type = typeof(string), Description = "The Feed Id parameter")]
+        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/rss+xml", bodyType: typeof(string), Description = "The RSS Feed response")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "feed/{usr}/{hash}/{id}")] HttpRequest req)
         {
@@ -42,8 +50,7 @@ namespace CDWSVCAPI
             }
 
             var resp = await _feedService.GetFeed(Guid.Parse(usr), hash, int.Parse(id), accept);
-            var json = JsonConvert.SerializeObject(resp);
-            return new OkObjectResult(json);
+            return new OkObjectResult(resp);
         }
     }
 }
