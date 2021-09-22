@@ -259,8 +259,8 @@ namespace CDWRepository
                 Params = new List<FeedSourceGroupParams> {
                     { new FeedSourceGroupParams { Param = new Param { Key = "subreddit", Desc = "Reddit Subreddit(s) to include", Type = "subreddits", Required=true } } },
                     { new FeedSourceGroupParams { Param = new Param { Key = "top", Desc = "Entries to Grab", Type = "positiveInteger", Value = "20" } } },
-                    { new FeedSourceGroupParams { Param = new Param { Key="sort", Desc="hot,new,rising,controversial,top,gilded", Type="choice", Value="hot" } } },
-                    { new FeedSourceGroupParams { Param = new Param { Key="time", Desc="hour,day,week,month,year,all", Type="choice", Value="week" } } }
+                    { new FeedSourceGroupParams { Param = new Param { Key= "sort", Desc="hot,new,rising,controversial,top,gilded", Type="choice", Value="hot" } } },
+                    { new FeedSourceGroupParams { Param = new Param { Key= "time", Desc="hour,day,week,month,year,all", Type="choice", Value="week" } } }
                 }
             }).Entity;
             var fsPhone = context.FeedSources.Add(new FeedSource
@@ -303,8 +303,8 @@ namespace CDWRepository
                     { new FeedSourceGroupParams { Param = new Param { Key = "subreddit", Desc = "Reddit Subreddit(s) to include", Type = "subreddits", Required=true } } },
                     { new FeedSourceGroupParams { Param = new Param { Key = "query", Desc = "Query to search Reddit", Type = "string", Required=true, Value="3840 2160" } } },
                     { new FeedSourceGroupParams { Param = new Param { Key = "top", Desc = "Entries to Grab", Type = "positiveInteger", Value = "20" } } },
-                    { new FeedSourceGroupParams { Param = new Param { Key="sort", Desc="hot,new,rising,conterversial,top,gilded", Type="choice", Value="hot" } } },
-                    { new FeedSourceGroupParams { Param = new Param { Key="time", Desc="hour,day,week,month,year,all", Type="choice", Value="year" } } }
+                    { new FeedSourceGroupParams { Param = new Param { Key= "sort", Desc="hot,new,rising,conterversial,top,gilded", Type="choice", Value="hot" } } },
+                    { new FeedSourceGroupParams { Param = new Param { Key= "time", Desc="hour,day,week,month,year,all", Type="choice", Value="year" } } }
                 }
             }).Entity;
 

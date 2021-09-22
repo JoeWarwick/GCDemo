@@ -1,12 +1,14 @@
 ﻿using CDWRepository;
 using CDWSVCAPI.Caching;
 using CDWSVCAPI.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Azure.WebJobs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 [assembly: FunctionsStartup(typeof(CDWSVCAPI.Startup))]
 namespace CDWSVCAPI
@@ -39,6 +41,11 @@ namespace CDWSVCAPI
                 .AddSingleton<AutoMetaRefreshCache>();
 
             var sp = builder.Services.BuildServiceProvider();
+        }
+
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory)
+        {
+            app.UseAuthentication();
         }
     }
 }
