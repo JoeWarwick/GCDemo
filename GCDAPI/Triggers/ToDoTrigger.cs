@@ -71,7 +71,7 @@ namespace GCDAPI
         [OpenApiParameter("Id", Required = true)]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(bool), Description = "The OK response")]
         public ActionResult<IList<ToDoItem>> DELTODO(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "todo")] int id)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "todo/{id:int}")] HttpRequest req, int id)
         {
 
             var resp = _todoService.DeleteToDo(id);
