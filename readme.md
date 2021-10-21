@@ -11,3 +11,22 @@ Features
 To run this locally, it requires the latest Azure Functions SDK; VS should download it for you on run.
 There is a swagger url presented which is compatible with API Manager and API Gateway in Azure as well.
     
+Here are the endpoints:
+
+Functions:
+
+        ToDos: [GET] http://localhost:7071/api/todos
+        
+        AddToDo: [POST] http://localhost:7071/api/todo
+
+        DeleteToDo: [DELETE] http://localhost:7071/api/todo/{id:int}
+
+        PutToDo: [PUT] http://localhost:7071/api/todo
+
+        RenderOpenApiDocument: [GET] http://localhost:7071/api/openapi/2.json
+
+        RenderSwaggerDocument: [GET] http://localhost:7071/api/swagger.json
+
+        RenderSwaggerUI: [GET] http://localhost:7071/api/swagger/ui
+
+        
