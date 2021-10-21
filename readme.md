@@ -8,8 +8,17 @@ Features
      Locally runnable and deployable to Azure
      Cheap to run in Azure on consumption plan and using EFCore to SQLLite db.
 
-To run this locally, it requires the latest Azure Functions SDK; VS should download it for you on run.
+To run the API locally, it requires the latest Azure Functions SDK; VS should download it for you on run.
 There is a swagger url presented which is compatible with API Manager and API Gateway in Azure as well.
+
+The API is deployed to Azure so there is not much need to run it locally. The react app will communicate with the azure api.
+
+The react app may be run locally from the Client/gcdclient folder. Run 'npm start' from there to do so.
+
+I am deploying the client to an Azure linux node host https://gcdclient.azurewebsites.net/
+Perculiar errors on deployment are occurring as yet. Still investigating. You may run the client locally to view it.
+
+
     
 Here are the endpoints:
 
