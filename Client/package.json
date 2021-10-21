@@ -2,7 +2,8 @@
   "name": "client",
   "version": "1.0.0",
   "description": "ToDo React Frontend",
-  "main": "index.js",
+  "type": "module",
+  "main": "gcdclient/src/index.js",
   "scripts": {
     "test": "test"
   },
