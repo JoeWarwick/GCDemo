@@ -16,12 +16,16 @@ Here are the endpoints:
 Functions:
 
         ToDos: [GET] http://localhost:7071/api/todos
+               [GET] https://gcdapiapi.azure-api.net/todo/todos
         
         AddToDo: [POST] http://localhost:7071/api/todo
+                 [POST] https://gcdapiapi.azure-api.net/todo/todo
 
         DeleteToDo: [DELETE] http://localhost:7071/api/todo/{id:int}
+                    [DELETE] https://gcdapiapi.azure-api.net/todo/todo
 
         PutToDo: [PUT] http://localhost:7071/api/todo
+                 [PUT] https://gcdapiapi.azure-api.net/todo/todo
 
         RenderOpenApiDocument: [GET] http://localhost:7071/api/openapi/2.json
 
