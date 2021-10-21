@@ -5,6 +5,8 @@ using Microsoft.DotNet.PlatformAbstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.IO;
+using System.Reflection;
 
 [assembly: FunctionsStartup(typeof(GCDAPI.Startup))]
 namespace GCDAPI
@@ -15,7 +17,9 @@ namespace GCDAPI
 
         public Startup()
         {
-            _appEnvPath = Environment.CurrentDirectory;
+            var binpath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var rootpath = Path.GetFullPath(Path.Combine(binpath, ".."));
+            _appEnvPath = rootpath;
         }
 
         public override void Configure(IFunctionsHostBuilder builder)
