@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/7c4b1117-f5b7-45da-9e51-b75d2b986dba/resourceGroups/appsvc_windows_centralus_basic/providers/Microsoft.Web/sites/gcdclient",
+    "appService.deploySubpath": "."
+}
